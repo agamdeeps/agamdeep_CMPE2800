@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace ICA01
 
         public static Dictionary<T, int> Categorize<T>(this IEnumerable<T> sourceList)
         {
-            Dictionary<T, int> temp = new Dictionary<T, int>();     // We are assuming the key can be anything but the value is an int
+            Dictionary<T, int> temp = new Dictionary<T, int>();     // We are assuming the key can be any type but the value is an int
 
             foreach (T item in sourceList)
             {
@@ -98,10 +99,36 @@ namespace ICA01
         {
             return Tuple.Create(string.Join(",", collect), collect.Count());
         }
+    }
 
-        public static void stackMaker<T>(Stack<T> sourceStack)
+    public class stackMaker<T>
+    {
+        private Stack<T> srcStack = new Stack<T>();
+
+        public T this[int iIndex]
         {
+            get
+            {
+                if (iIndex < categ.Categorize(srcStack).Count - 1)
+                    return categ.Categorize(srcStack).ElementAt(iIndex).Key;
 
+                else
+                    throw new ArgumentException("Index out of range");
+            }
+        }
+
+        public T this[string key]
+        {
+            get
+            {
+                for(int i = 0;i < categ.Categorize(srcStack).Count; i++)
+                {
+                    if (categ.Categorize(srcStack)[i].ToString() == key)
+                    {
+                        return categ.Categorize(srcStack).ElementAt(iIndex).Key;
+                    }
+                }
+            }
         }
     }
 }
