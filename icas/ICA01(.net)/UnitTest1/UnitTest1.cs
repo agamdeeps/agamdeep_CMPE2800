@@ -1,5 +1,4 @@
 using ICA01;
-
 namespace UnitTest1
 {
     [TestClass]
@@ -10,7 +9,7 @@ namespace UnitTest1
         {
             int[] nums = { 6, 2, 4, 4, 5, 6, 7, 6 };
 
-            Assert.AreEqual(2, nums.);
+            //Assert.AreEqual(2, nums.);
         }
     }
 }

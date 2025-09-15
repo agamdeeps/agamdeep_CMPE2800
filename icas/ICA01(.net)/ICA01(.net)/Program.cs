@@ -46,6 +46,14 @@ namespace ICA01
             Console.WriteLine();
             Console.WriteLine(names.Penultimate());
 
+            Console.WriteLine();
+
+            List<int> itemp = new List<int>(new int[] { 4, 12, 12, 3, 5, 6, 7, 6, 12 });
+            
+            Console.WriteLine($"{itemp.AdjacentDuplicate()}");
+
+            Console.WriteLine();
+
             Console.ReadKey();
         }
     }
@@ -98,7 +106,14 @@ namespace ICA01
         =========================================================================================*/
         public static T Penultimate<T>(this IEnumerable<T> collect)
         {
-            return collect.ElementAtOrDefault(collect.Count() - 2);         // utilizes element at extension method to get element at particular position
+            if(collect.Count() < 2)
+            {
+                return default;
+            }
+            else
+            {
+                return collect.ElementAtOrDefault(collect.Count() - 2);         // utilizes element at extension method to get element at particular position
+            }
         }
 
         /*=======================================================================================
@@ -116,7 +131,7 @@ namespace ICA01
             }
             else
             {
-                throw new ArgumentException("No elements in the dictionary");       // throwing exception if empty dict
+                throw new ArgumentException("No elements in the dictionary");       // throwing exception if empty dictionary
             }
         }
 
@@ -132,20 +147,23 @@ namespace ICA01
             {
                 return default;
             }
-
+            
             if (!source.GetEnumerator().MoveNext())
             { return default; }
 
-            T curr = source.GetEnumerator().Current;        //get the first elememt
+            IEnumerator<T> enumerate = source.GetEnumerator();              // using an ienumerator to iterate over the ienumerable
 
-            while (source.GetEnumerator().MoveNext())        // while there exists an element for next index
+            T curr = enumerate.Current;        //get the first element
+
+            while (enumerate.MoveNext())        // while there exists an element for next index and moving to next simultaneously
             {
-                if (curr.Equals(source.GetEnumerator().Current))   // if adjacent is found
-                    return curr;
+                T forward = enumerate.Current;       // get the next element
 
-                curr = source.GetEnumerator().Current;           // replace the current with next
+                if (forward.Equals(curr))   // if adjacent is found
+                    return forward;
+
+                curr = enumerate.Current;
             }
-
             return default;
         }
 
@@ -183,7 +201,7 @@ namespace ICA01
         }
 
         /*=======================================================================================
-       * Function :       public int this[T key]
+       * Function : public int this[T key]
        * Purpose : checks for a key in the dict and returns its value
        * Argument - key of any type
        * Returns - value of key which is an int
@@ -196,9 +214,10 @@ namespace ICA01
                 {
                     return this.Categorize()[key];                  // returning the value of that key
                 }
-
                 else
+                {
                     throw new ArgumentException("Key not found in collection!!");
+                }
             }
         }
     }
