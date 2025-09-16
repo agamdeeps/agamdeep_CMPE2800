@@ -26,7 +26,7 @@ namespace ICA01_.net_
                 {
                     temp.Add(item, 1);
                 }
-                else                                   // add one to existing
+                else                                   // add one to existing if already existing
                 {
                     temp[item]++;
                 }
@@ -52,11 +52,11 @@ namespace ICA01_.net_
         * Argument - an enumerable collection of any type
         * Returns - any type
         =========================================================================================*/
-        public static T Penultimate<T>(this IEnumerable<T> collect)
+        public static T Penultimate<T>(this IEnumerable<T> collect) where T : new()
         {
             if (collect.Count() < 2)
             {
-                return default;
+                return new T();
             }
             else
             {
@@ -70,12 +70,15 @@ namespace ICA01_.net_
         * Argument - an dictionary of any key type
         * Returns - Tuple 
         =========================================================================================*/
-        public static Tuple<T, int> Rando<T>(this Dictionary<T, int> sourceDict)
+        public static (T, int) Rando<T>(this Dictionary<T, int> sourceDict)
         {
             if (sourceDict.Count() != 0)                                             // checking if the dict is empty
             {
                 int randPos = _rnd.Next(sourceDict.Count() - 1);                               // getting a random location
-                return Tuple.Create(sourceDict.ElementAt(randPos).Key, sourceDict.ElementAt(randPos).Value);    // returning the tuple
+
+                (T, int) t1 = (sourceDict.ElementAt(randPos).Key, sourceDict.ElementAt(randPos).Value);
+
+                return t1;    // returning the tuple
             }
             else
             {
@@ -88,12 +91,13 @@ namespace ICA01_.net_
         * Purpose : returns the first instance of an adjacent element
         * Argument - an enumerable collection of any type
         * Returns - the element which is of any type
+        * Reference - https://stackoverflow.com/questions/1532814/how-to-loop-through-a-collection-that-supports-ienumerable
         =========================================================================================*/
-        public static T AdjacentDuplicate<T>(this IEnumerable<T> source)
+        public static T AdjacentDuplicate<T>(this IEnumerable<T> source) where T : new()
         {
             if (source.Count() == 0)                 // checking if collection is empty
             {
-                return default;
+                return new T();
             }
 
             IEnumerator<T> enumerate = source.GetEnumerator();              // using an ienumerator to iterate over the ienumerable
@@ -112,7 +116,7 @@ namespace ICA01_.net_
 
                 curr = forward;
             }
-            return default;
+            return new T();
         }
 
         /*=======================================================================================
@@ -121,9 +125,12 @@ namespace ICA01_.net_
         * Argument - an enumerable collection of any type
         * Returns - a tuple where the first element is the string and second is the count
         =========================================================================================*/
-        public static Tuple<string, int> StringDisplay<T>(this IEnumerable<T> collect)
+        public static (string, int) StringDisplay<T>(this IEnumerable<T> collect)
         {
-            return Tuple.Create(string.Join(",", collect), collect.Count());        // using string join to obtain the required string
+            if (collect.Count() == 0)
+                return ("EMPTY", collect.Count());
+            else
+                return (string.Join(",", collect), collect.Count());        // using string join to obtain the required string
         }
     }
 }

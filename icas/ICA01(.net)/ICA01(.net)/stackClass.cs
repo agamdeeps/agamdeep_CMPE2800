@@ -19,12 +19,14 @@ namespace ICA01_.net_
         {
             get
             {
-                if (index < 0 || index > this.Categorize().Count)   // checking if index is the required bounds
+                Dictionary<T, int> tempDict = this.Categorize();
+
+                if (index < 0 || index > tempDict.Count)   // checking if index is the required bounds
                 {
                     throw new IndexOutOfRangeException("Invalid Index");
                 }
 
-                return this.Categorize().ElementAt(index).Key;          // first use categorize to get the organized and sorted dict, and them return the key
+                return tempDict.ElementAt(index).Key;          // first use categorize to get the organized and sorted dict, and them return the key
             }
         }
 
@@ -38,9 +40,11 @@ namespace ICA01_.net_
         {
             get
             {
-                if (this.Contains(key))             // checking if the dictionary contains the key
+                Dictionary<T, int> tempDict = this.Categorize();
+
+                if (tempDict.ContainsKey(key))             // checking if the dictionary contains the key
                 {
-                    return this.Categorize()[key];                  // returning the value of that key
+                    return tempDict[key];                  // returning the value of that key
                 }
                 else
                 {

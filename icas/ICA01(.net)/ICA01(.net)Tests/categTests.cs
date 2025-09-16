@@ -12,20 +12,23 @@ namespace ICA01_.net_.Tests
     public class categTests
     {
         [TestMethod()]
+        /*
+         * Purpose - To check the functionality of the categorize function
+         */
         public void CategorizeTest()
         {
-            int[] nums = { 6, 2, 4, 4, 5, 6, 7, 6 };
+            int[] nums = { 6, 2, 4, 4, 5, 6, 7, 6 };                // create a sample array of ints
 
-            Assert.AreEqual(5, nums.Categorize().Count);
-            Assert.AreEqual(3, nums.Categorize()[6]);
+            Assert.AreEqual(5, nums.Categorize().Count);            // checking if the count is as expected
+            Assert.AreEqual(3, nums.Categorize()[6]);               // checking the value of an insstance is as expected according to sample
         }
 
         [TestMethod()]
         public void PenultimateTest()
         {
-            int[] nums = { 6, 2, 4, 4, 5, 6, 7, 6 };
+            int[] nums = { 6, 2, 4, 4, 5, 6, 7, 6 };                        // sample array of ints
             int[] lessNum = { 6};
-            Assert.AreEqual(7, nums.Penultimate());
+            Assert.AreEqual(7, nums.Penultimate());                         // checking that the function actually returns the second last value
             //Assert.AreEqual(6, lessNum.Penultimate());
         }
 
@@ -33,25 +36,26 @@ namespace ICA01_.net_.Tests
         public void RandoTest()
         {
             int[] iNums = { 1, 2, 3, 4 };
-            int randNum = iNums.Categorize().Rando().Item1; 
-            Assert.IsTrue(iNums.Contains(randNum));
+
+            int randNum = iNums.Categorize().Rando().Item1;                     // obtaining the key of the random element selected
+            Assert.IsTrue(iNums.Contains(randNum));                             // Testing that initial array actually contains the key obtained
         }
 
         [TestMethod()]
         public void AdjacentDuplicateTest()
         {
-            int[] iemp = { 4, 12, 12, 3, 5, 6, 7, 6, 12 };
-            int checknum = iemp.AdjacentDuplicate();
+            int[] iemp = { 4, 12, 12, 3, 5, 6, 7, 6, 12 };                      // sample array with an instance of adjacent duplicate
+            int checknum = iemp.AdjacentDuplicate();                            // making sure the number returned is as expected
             Assert.AreEqual(12, checknum);
         }
 
         [TestMethod()]
         public void StringDisplayTest()
         {
-            List<string> names = new List<string> { "Rick", "Rick", "Glenn" };
-            Tuple<string, int> display = names.StringDisplay();
+            List<string> names = new List<string> { "Rick", "Rick", "Glenn" };      // sample of list of strings
+            Tuple<string, int> display = names.StringDisplay();                     // storing the tuple return in a variable
 
-            Assert.AreEqual(3, display.Item2);
+            Assert.AreEqual(3, display.Item2);                                      // the second item returned is the count of elements and verifying that
         }
 
         public void staticTest()
