@@ -14,14 +14,14 @@ namespace ICA02.Tests
         [TestMethod()]
         public void KnightPosTest()
         {
-            KnightPos sample = new KnightPos();
+            KnightPos sample = new KnightPos(1, 0);
             Assert.AreEqual((1,0), sample.getPos);
         }
 
         [TestMethod()]
         public void moveKnightTest()
         {
-            KnightPos sample = new KnightPos();
+            KnightPos sample = new KnightPos(1, 0);
             sample.moveKnight(2, 2);
             Assert.AreEqual((2,2), sample.getPos);
         }

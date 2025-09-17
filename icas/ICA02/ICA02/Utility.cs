@@ -15,6 +15,8 @@ namespace ICA02
 {
     public static class Utility
     {
+        static Random rnd = new Random();
+
         /*=======================================================================================
         * Function : public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> srcCollect)
         * Purpose : Shuffles and returns the elements as an Ienumerable
@@ -23,26 +25,25 @@ namespace ICA02
         =========================================================================================*/
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> srcCollect)
         {
-            Random rnd = new Random();
-            List<T> tempList = new List<T>(srcCollect);             // storing the argument collection as a list
+            List<T> tempList = srcCollect.ToList();             // storing the argument collection as a list
 
             /*=======================================================================================
             * Function : void swapfunc(int num2)
             * Purpose : obtains the index of element to be randomised and changes it in the list
             * Argument - index of current element
             =========================================================================================*/
-            void swapfunc(int num2)
+            void swapfunc(int num2, int num1)
             {
                 T temp = tempList[num2];
-                int rndNum = rnd.Next(num2, tempList.Count);
-                tempList[num2] = tempList[rndNum];
-                tempList[rndNum] = temp;
+                tempList[num2] = tempList[num1];
+                tempList[num1] = temp;
             }
 
             // Iterating thorugh the list
             for (int j = 0; j < srcCollect.Count(); j++)
             {
-                swapfunc(j);                        // performing the swap
+                int rndNum = rnd.Next(j, tempList.Count);
+                swapfunc(j, rndNum);                        // performing the swap
                 yield return tempList[j];           // returning the swapped element
             }
         }
@@ -81,8 +82,6 @@ namespace ICA02
         =========================================================================================*/
         public static IEnumerable<T> Sample<T>(this IEnumerable<T> srcCollect)
         {
-            Random rnd = new Random();
-
             while (true)
             {
                 yield return srcCollect.ElementAtOrDefault(rnd.Next(0, srcCollect.Count()));

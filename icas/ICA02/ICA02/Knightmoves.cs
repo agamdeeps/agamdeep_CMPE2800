@@ -30,9 +30,16 @@ namespace ICA02
         * Function :  public KnightPos()
         * Purpose : Constrcutor that sets the initial position of the knight
         =========================================================================================*/
-        public KnightPos() 
-        { 
-            currPos = new(1,0);
+        public KnightPos(int x, int y) 
+        {
+            if (x < 0 || y < 0 || x > 7 || y > 7)                                                               // Checking if the values are out of the bounds of board
+            {
+                throw new ArgumentException("Cannot Update the position.Specified positions are out of board");
+            }
+            else
+            {
+                currPos = new(x, y);
+            }
         }
 
         /*=======================================================================================
@@ -44,20 +51,18 @@ namespace ICA02
         {
             if(x < 0 || y < 0 || x > 7 || y > 7)                                                               // Checking if the values are out of the bounds of board
             {
-                Console.WriteLine("Cannot Update the position.Specified positions are out of board");
+               throw new ArgumentException("Cannot Update the position.Specified positions are out of board");
             }
 
-            if (Math.Abs(currPos.Item1 - x) == 2 && Math.Abs(currPos.Item2 - y) == 1 || Math.Abs(currPos.Item1 - x) == 1 && Math.Abs(currPos.Item2 - y) == 2)       // checking if the values confirm with a possible knight move
+            if (validMove(x, y))       // checking if the values confirm with a possible knight move
             {
                 // Updating the current position if found valid
                 currPos.Item1 = x;
                 currPos.Item2 = y;
-
-                Console.WriteLine("Position Approved");
             }
             else
             {
-                Console.WriteLine("Cannot Update the position.Specified position is not valid for knight");
+                throw new ArgumentException("Cannot Update the position.Specified position is not valid for knight");
             }
         }
 
@@ -71,11 +76,28 @@ namespace ICA02
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if(Math.Abs(currPos.Item1 - i) == 2 && Math.Abs(currPos.Item2 - j) == 1 || Math.Abs(currPos.Item1 - i) == 1 && Math.Abs(currPos.Item2 - j) == 2)
+                    if(validMove(i, j))
                     {
                         yield return (i, j);
                     }
                 }
+            }
+        }
+
+        /*=======================================================================================
+        * Function :  public bool validMove(int x, int y)
+        * Purpose : Function takes a pair of coordinates and evaluates if it is a valid move
+        * Argument -  x and y coordinates
+        =========================================================================================*/
+        public bool validMove(int x, int y)
+        {
+            if (Math.Abs(currPos.Item1 - x) == 2 && Math.Abs(currPos.Item2 - y) == 1 || Math.Abs(currPos.Item1 - x) == 1 && Math.Abs(currPos.Item2 - y) == 2)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

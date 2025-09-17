@@ -14,9 +14,23 @@ namespace ICA02.Tests
         [TestMethod()]
         public void ShuffleTest()
         {
-            List<int> listnum = new List<int> { 1, 2, 3, 4, 5 };
-            Assert.AreEqual(5, listnum.Shuffle().Count());
-            Assert.AreNotEqual(listnum, listnum.Shuffle());
+            List<int> listnums = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            Dictionary<int, int> positions = new Dictionary<int, int> { { 0, 0 }, { 1, 0 }, { 2, 0 }, { 3, 0 }, { 4, 0 }, { 5, 0 }, { 6, 0 }, { 7, 0 } };
+
+            for (int i = 0; i < 10000000; i++)
+            {
+                listnums.Order();
+                listnums = listnums.Shuffle().ToList();
+                positions[listnums.IndexOf(1)]++;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Positions --");
+            foreach (var item in positions)
+            {
+                Console.WriteLine($"{item.Key} : {((double)item.Value / 10000000) * 100}");
+            }
         }
 
         [TestMethod()]
