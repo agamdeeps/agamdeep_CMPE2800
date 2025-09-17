@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ICA02", "ICA02\ICA02.csproj", "{56A613B0-F129-44C6-B53B-6AEADE7E30BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICA02Tests", "ICA02Tests\ICA02Tests.csproj", "{C1DE257F-B6CB-47FF-B062-2BBA32A9172B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56A613B0-F129-44C6-B53B-6AEADE7E30BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56A613B0-F129-44C6-B53B-6AEADE7E30BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A613B0-F129-44C6-B53B-6AEADE7E30BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56A613B0-F129-44C6-B53B-6AEADE7E30BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1DE257F-B6CB-47FF-B062-2BBA32A9172B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1DE257F-B6CB-47FF-B062-2BBA32A9172B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1DE257F-B6CB-47FF-B062-2BBA32A9172B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1DE257F-B6CB-47FF-B062-2BBA32A9172B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B1BF88B-6311-4C0F-8016-5337C39EE802}
+	EndGlobalSection
+EndGlobal
