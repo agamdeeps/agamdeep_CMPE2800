@@ -27,10 +27,14 @@ namespace ICA02.Tests
 
             Console.WriteLine();
             Console.WriteLine("Positions --");
+            List<int> checkList = new List<int>();
             foreach (var item in positions)
             {
+                checkList.Add((int)((double)item.Value / 10000000) * 100);
                 Console.WriteLine($"{item.Key} : {((double)item.Value / 10000000) * 100}");
             }
+
+            Assert.AreEqual(checkList[0], checkList[5]);
         }
 
         [TestMethod()]
@@ -43,13 +47,34 @@ namespace ICA02.Tests
             Assert.AreEqual(3, listnum.Peel().Count());
             Assert.AreEqual(2, listnum2.Peel().Count());
 
-            List<int> temp = new List<int> { 1, 4};
-            CollectionAssert.AreEqual(temp, listnum3.Peel().First());
+            List<int> temp1 = new List<int> { 1, 4};
+            List<int> temp2 = new List<int> { 2, 3 };
+
+            List<List<int>> peeledList = listnum3.Peel().ToList();
+
+            CollectionAssert.AreEqual(temp1, peeledList[0]);
+            CollectionAssert.AreEqual(temp2, peeledList[1]);
+        }
+
+        [TestMethod()]
+        public void PeelEmptyListTest()
+        {
+            List<int> tempList = new List<int> { };
+            List<List<int>> peeledList = tempList.Peel().ToList();
+            Assert.AreEqual(1, peeledList.Count());       // contains an empty list
+            Assert.AreEqual(0, peeledList[0].Count);
         }
 
         [TestMethod()]
         public void SampleTest()
         {
+            List<int> list = new List<int> { 10, 20, 30, 40, 50 };
+            List<int> tempList = list.Sample().Take(50).ToList();
+
+            foreach (int item in tempList)
+            {
+                Assert.IsTrue(list.Contains(item));    
+            }
         }
     }
 }
