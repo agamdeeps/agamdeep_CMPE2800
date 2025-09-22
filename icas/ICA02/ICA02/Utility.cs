@@ -25,7 +25,7 @@ namespace ICA02
         =========================================================================================*/
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> srcCollect)
         {
-            List<T> tempList = srcCollect.ToList();             // storing the argument collection as a list
+            List<T> tempList = srcCollect.ToList();             // storing the argument collection as a list because of random indexing
 
             /*=======================================================================================
             * Function : void swapfunc(int num2)
@@ -56,7 +56,8 @@ namespace ICA02
         =========================================================================================*/
         public static IEnumerable<List<T>> Peel<T>(this IEnumerable<T> srcCollect)
         {
-            if(srcCollect.Count() == 0) yield return new List<T>();                 // returning empty list if source collection is empty
+            if(srcCollect.Count() == 0) 
+                yield return new List<T>();                 // returning empty list if source collection is empty
 
             else
             {
@@ -82,6 +83,10 @@ namespace ICA02
         =========================================================================================*/
         public static IEnumerable<T> Sample<T>(this IEnumerable<T> srcCollect)
         {
+            if(srcCollect.Count() == 0)
+            {
+                throw new ArgumentException("Collection is empty");
+            }
             while (true)
             {
                 yield return srcCollect.ElementAtOrDefault(rnd.Next(0, srcCollect.Count()));

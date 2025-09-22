@@ -50,8 +50,6 @@ namespace ICA02
             //{
             //    Console.WriteLine(item);
             //}
-
-            
         }
     }
 }

@@ -1,4 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Project : ICA_Generators
+// Sept 17 2025
+// By Agamdeep Singh
+//
+// MyLibrary type - class definition - KnightPosTests class
+// Print Format : Landscape
+// ///////////////////////////////////////////////////////////////////////////
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ICA02;
 using System;
 using System.Collections.Generic;
@@ -39,6 +46,17 @@ namespace ICA02.Tests
         public void knightPos_Highpositiontest()
         {
             Assert.ThrowsException<ArgumentException>(() => new KnightPos(9, 4));
+        }
+
+        /*=======================================================================================
+        * Function : public void knightPos_Highpositiontest()
+        * Purpose : Checks that when knight is placed in corner ite returns only limited moves
+        =========================================================================================*/
+        [TestMethod()]
+        public void knightPos_Cornertest()
+        {
+            KnightPos sample = new KnightPos(0, 7);
+            Assert.AreEqual((5, 6), sample.getPos);                  // comparing the positions set in class
         }
 
         /*=======================================================================================

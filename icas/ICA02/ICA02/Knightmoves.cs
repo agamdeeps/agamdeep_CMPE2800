@@ -24,6 +24,10 @@ namespace ICA02
             {
                 return currPos;
             }
+            set
+            {
+                currPos = value;
+            }
         }
 
         /*=======================================================================================
@@ -38,7 +42,7 @@ namespace ICA02
             }
             else
             {
-                currPos = new(x, y);
+                getPos = new(x, y);
             }
         }
 
@@ -57,8 +61,7 @@ namespace ICA02
             if (validMove(x, y))       // checking if the values confirm with a possible knight move
             {
                 // Updating the current position if found valid
-                currPos.Item1 = x;
-                currPos.Item2 = y;
+                getPos = (x, y);
             }
             else
             {
@@ -86,19 +89,12 @@ namespace ICA02
 
         /*=======================================================================================
         * Function :  public bool validMove(int x, int y)
-        * Purpose : Function takes a pair of coordinates and evaluates if it is a valid move
+        * Purpose : Helper Function takes a pair of coordinates and evaluates if it is a valid move
         * Argument -  x and y coordinates
         =========================================================================================*/
         public bool validMove(int x, int y)
         {
-            if (Math.Abs(currPos.Item1 - x) == 2 && Math.Abs(currPos.Item2 - y) == 1 || Math.Abs(currPos.Item1 - x) == 1 && Math.Abs(currPos.Item2 - y) == 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Math.Abs(currPos.Item1 - x) == 2 && Math.Abs(currPos.Item2 - y) == 1 || Math.Abs(currPos.Item1 - x) == 1 && Math.Abs(currPos.Item2 - y) == 2;   // checking if move done by user is valid       
         }
     }
 }
