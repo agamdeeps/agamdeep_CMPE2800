@@ -9,11 +9,6 @@ namespace ReviewLab
 {
     internal class SimState
     {
-        public enum handTypes { Rock, Paper, Scissors };
-
-        public SimState() 
-        {
-            List<handTypes> activeHands = new List<handTypes>();
-        }
+        List<handTypes> activeHands = new List<handTypes>();
     }
 }
