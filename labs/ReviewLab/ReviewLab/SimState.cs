@@ -26,13 +26,18 @@ namespace ReviewLab
         private CDrawer drawer;
         private int frameCount = 0;
 
+        public CDrawer GetDrawer
+        {
+            get { return drawer; }
+
+        }
         /*=======================================================================================
         * Function : public SimState(int noHands)
         * Input : The number of hands generated
         * Purpose : populates the list with the required number of hands and creates a gdidrawer instance
         =========================================================================================*/
         public SimState(int noHands)
-        { 
+        {
             drawer = new CDrawer();
             drawer.ContinuousUpdate = false;
 
