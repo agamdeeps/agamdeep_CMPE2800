@@ -42,6 +42,15 @@ namespace ReviewLab
             }
         }
 
+        public void CloseDrawer()
+        {
+            if (drawer != null)
+            {
+                drawer.Close();   // closes the GDIDrawer window
+                drawer = null;
+            }
+        }
+
         /*=======================================================================================
         * Function :  public (int frame, handTypes? winner) Tick()
         * returns : int frame - the number of rounds
@@ -99,6 +108,7 @@ namespace ReviewLab
         * Function :  public handTypes? winnerCheck()
         * returns : handTypes? - the number of rounds
         * Purpose : Moves the hands, check for overlaps and determines the winner
+        * Reference - ChatGpt
         =========================================================================================*/
         public handTypes? winnerCheck()
         {

@@ -67,6 +67,13 @@ namespace ReviewLab
         =========================================================================================*/
         public void startSimulation(int hands)
         {
+            if (sim != null)
+            {
+                sim.CloseDrawer();
+                timer.Stop();
+                sim = null;
+            }
+
             sim = new SimState(hands);
             UI_label.Text = "Rounds: 0";
 

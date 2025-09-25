@@ -123,7 +123,7 @@ namespace ReviewLab
         }
 
         /*=======================================================================================
-       * Function :         public void render(GDIDrawer.CDrawer drawer)
+       * Function : public void render(GDIDrawer.CDrawer drawer)
        * Purpose : Renders the hand ellipse and text of hand on the drawer
        =========================================================================================*/
         public void render(GDIDrawer.CDrawer drawer)
